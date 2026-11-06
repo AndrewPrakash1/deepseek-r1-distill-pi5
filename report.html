@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--foreground); font-family: inherit; font-size: 13px; }
+  .wrap { max-width: 900px; }
+  h1 { font-size: 17px; font-weight: 650; margin: 0 0 2px; }
+  .sub { color: var(--muted-foreground); font-size: 12px; margin-bottom: 18px; }
+  h2 { font-size: 13px; font-weight: 650; margin: 22px 0 8px;
+       text-transform: uppercase; letter-spacing: .06em; color: var(--muted-foreground); }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 5px 9px; border-bottom: 1px solid var(--border); }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-weight: 600; color: var(--muted-foreground); font-size: 11px;
+       text-transform: uppercase; letter-spacing: .04em; }
+  tbody tr:hover { background: var(--accent); }
+  .kpis { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+  .kpi { border: 1px solid var(--border); border-radius: 8px; padding: 9px 13px; min-width: 128px; }
+  .kpi .v { font-size: 19px; font-weight: 650; line-height: 1.15; }
+  .kpi .l { font-size: 11px; color: var(--muted-foreground); margin-top: 2px; }
+  .bar { height: 7px; border-radius: 4px; background: var(--accent); position: relative; min-width: 60px; }
+  .bar > i { display: block; height: 100%; border-radius: 4px; background: currentColor; opacity: .75; }
+  .good { color: #1a9e6a; font-weight: 600; }
+  .warn { color: #c98a12; font-weight: 600; }
+  .bad  { color: #d0564a; font-weight: 600; }
+  .mute { color: var(--muted-foreground); }
+  .note { color: var(--muted-foreground); font-size: 11.5px; margin-top: 6px; }
+  code { background: var(--accent); padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>DeepSeek-R1-Distill-Qwen-1.5B · Raspberry Pi 5 (8 GB)</h1>
+  <div class="sub">llama.cpp 0.9.0-dev <code>18ab62a</code> · built on-device, aarch64 NEON, CPU-only · Q4_K_M 1.04 GiB · Debian 13 (trixie)</div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">11.5</div><div class="l">tg t/s (cool, 2 thr)</div></div>
+    <div class="kpi"><div class="v">56.6</div><div class="l">pp t/s (4 thr, 128 tok)</div></div>
+    <div class="kpi"><div class="v">2.1 GB</div><div class="l">peak RSS</div></div>
+    <div class="kpi"><div class="v">3 / 7</div><div class="l">prompts answered correctly</div></div>
+  </div>
+
+  <h2>Throughput vs context depth</h2>
+  <table>
+    <thead><tr><th>threads</th><th>prompt tok</th><th>pp t/s</th><th>TTFT</th><th>tg t/s</th><th>512-tok think</th></tr></thead>
+    <tbody>
+      <tr><td>2</td><td>128</td><td>33.51</td><td>3.82 s</td><td>12.31</td><td>41.6 s</td></tr>
+      <tr><td>2</td><td>512</td><td>32.29</td><td>15.86 s</td><td>12.31</td><td>41.6 s</td></tr>
+      <tr><td>2</td><td>1024</td><td>31.00</td><td>33.04 s</td><td>12.31</td><td>41.6 s</td></tr>
+      <tr><td>2</td><td>2048</td><td>28.63</td><td>71.53 s</td><td>12.31</td><td>41.6 s</td></tr>
+      <tr><td>2</td><td>4096</td><td>24.75</td><td>165.49 s</td><td>12.31</td><td>41.6 s</td></tr>
+      <tr><td><b>4</b></td><td>128</td><td><b>56.61</b></td><td>2.26 s</td><td>10.90</td><td>47.0 s</td></tr>
+      <tr><td><b>4</b></td><td>2048</td><td><b>43.14</b></td><td>47.47 s</td><td>10.90</td><td>47.0 s</td></tr>
+      <tr><td><b>4</b></td><td>4096</td><td><b>37.14</b></td><td class="warn">110.29 s</td><td>10.90</td><td>47.0 s</td></tr>
+    </tbody>
+  </table>
+  <div class="note">pp falls <b>−34.4%</b> from 128 → 4096 ctx. Generation is <b>+12.9% faster on 2 threads</b> than 4 — decode is memory-bandwidth-bound, so extra cores only add heat.</div>
+
+  <h2>End-to-end reasoning runs</h2>
+  <table>
+    <thead><tr><th>prompt</th><th>TTFT</th><th>gen t/s</th><th>tok</th><th>RSS</th><th>peak °C</th><th>backtrack</th><th>verdict</th></tr></thead>
+    <tbody>
+      <tr><td>arith_multistep</td><td>0.86 s</td><td>11.37</td><td>421</td><td>2065 MB</td><td>82.3</td><td>0</td><td class="warn">slip</td></tr>
+      <tr><td>arith_backtrack</td><td>0.60 s</td><td>10.61</td><td>407</td><td>2065 MB</td><td>83.4</td><td>0</td><td class="good">correct</td></tr>
+      <tr><td>logic_puzzle</td><td>0.91 s</td><td>10.79</td><td>476</td><td>2065 MB</td><td>84.5</td><td>0</td><td class="bad">wrong</td></tr>
+      <tr><td>logic_false_premise</td><td>0.61 s</td><td>9.28</td><td>1024</td><td>2065 MB</td><td>85.1</td><td>5</td><td class="good">correct</td></tr>
+      <tr><td>code_algorithm</td><td>0.75 s</td><td>10.30</td><td>1024</td><td>2070 MB</td><td>85.1</td><td>6</td><td class="mute">truncated</td></tr>
+      <tr><td>code_bugfix</td><td>0.77 s</td><td>9.02</td><td>761</td><td>2099 MB</td><td>85.1</td><td>5</td><td class="good">correct</td></tr>
+      <tr><td>logic_selfcheck</td><td>0.65 s</td><td>10.27</td><td>1024</td><td>2121 MB</td><td>85.1</td><td>8</td><td class="mute">no answer</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Gen speed decays 11.37 → 9.02 t/s down the table as the die heats. RSS grows 2065 → 2121 MB as the 4k KV window fills. <b>3 of 7</b> hit the 1024-token cap; all 4 runs with backtracking cues also ran long.</div>
+
+  <h2>Thermal cost (controlled)</h2>
+  <table>
+    <thead><tr><th>phase</th><th>SoC</th><th>pp t/s</th><th>tg t/s</th></tr></thead>
+    <tbody>
+      <tr><td>cool</td><td>53.2 → 81.2 °C</td><td>60.98</td><td class="good">11.53</td></tr>
+      <tr><td>hot (plateau)</td><td>82.9 °C</td><td>56.15</td><td class="warn">10.69</td></tr>
+      <tr><td><b>delta</b></td><td></td><td><b>−7.9%</b></td><td><b>−7.3%</b></td></tr>
+    </tbody>
+  </table>
+  <div class="note"><code>get_throttled → 0xe0000</code>: ARM freq capped + throttling + soft temp limit all latched. The die self-limits at ~82–83 °C. First answer after boot is the fastest.</div>
+
+  <h2>Memory model — brief vs measured</h2>
+  <table>
+    <thead><tr><th>component</th><th>brief assumed</th><th>measured</th></tr></thead>
+    <tbody>
+      <tr><td>weights (mmap'd)</td><td>1.1 GB</td><td>1.04 GiB</td></tr>
+      <tr><td>KV @ 4096 ctx (f16, GQA 2 heads)</td><td>~0.5 GB</td><td class="good">112 MiB</td></tr>
+      <tr><td>ARM repack buffer</td><td class="bad">not mentioned</td><td class="bad">934 MiB</td></tr>
+      <tr><td><b>peak RSS</b></td><td>~2.6 GB implied</td><td><b>2.07–2.12 GB</b></td></tr>
+    </tbody>
+  </table>
+  <div class="note">The KV cache is <b>4.5× smaller</b> than the brief assumes (GQA), but the brief misses the ~934 MiB <code>CPU_REPACK</code> buffer — which is the real second-largest allocation.</div>
+
+</div>
+</body>
+</html>

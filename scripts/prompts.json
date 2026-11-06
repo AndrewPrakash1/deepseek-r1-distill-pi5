@@ -1,0 +1,44 @@
+[
+  {
+    "id": "arith_multistep",
+    "category": "arithmetic",
+    "prompt": "A shop sells notebooks at 3 for 47 rupees. If I buy 14 notebooks and pay with a 500 rupee note, how much change do I get? Show your reasoning step by step.",
+    "expected": "281"
+  },
+  {
+    "id": "arith_backtrack",
+    "category": "arithmetic",
+    "prompt": "If 3x + 7 = 2x + 19, what is x? Then compute 5x - 4.",
+    "expected": "56"
+  },
+  {
+    "id": "logic_puzzle",
+    "category": "logic",
+    "prompt": "Three friends A, B and C each have a different pet: cat, dog, bird. A does not have the bird. The one with the dog is not C. B has the bird. Who has which pet?",
+    "expected": "B=bird, A=dog, C=cat"
+  },
+  {
+    "id": "logic_false_premise",
+    "category": "logic",
+    "prompt": "All roses are flowers. Some flowers fade quickly. Therefore all roses fade quickly. Is this conclusion logically valid? Explain.",
+    "expected": "not valid"
+  },
+  {
+    "id": "code_algorithm",
+    "category": "programming",
+    "prompt": "Write a Python function that returns the second largest distinct number in a list, handling lists with fewer than 2 distinct values by returning None. Explain your approach.",
+    "expected": "code"
+  },
+  {
+    "id": "code_bugfix",
+    "category": "programming",
+    "prompt": "This Python function is meant to reverse a string but is wrong: def rev(s): return s[::-2]. Explain the bug and give the corrected one-liner.",
+    "expected": "s[::-1]"
+  },
+  {
+    "id": "logic_selfcheck",
+    "category": "logic",
+    "prompt": "What is the sum of the first 20 positive even numbers? Work it out two independent ways and confirm the answers agree.",
+    "expected": "420"
+  }
+]

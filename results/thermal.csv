@@ -1,0 +1,3 @@
+phase,temp_before_c,temp_after_c,pp_32tok_tps,tg_256tok_tps
+cool,53.2,81.2,60.98,11.53
+hot,82.9,82.9,56.15,10.69

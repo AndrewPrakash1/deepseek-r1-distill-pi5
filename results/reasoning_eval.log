@@ -1,0 +1,15 @@
+--- arith_multistep (arithmetic) ---
+    ttft=0.857s  pp=60.67t/s  gen=11.37t/s  gen_tokens=421  rss=2065.4MB  temp=82.3C  backtrack=False(0)
+--- arith_backtrack (arithmetic) ---
+    ttft=0.597s  pp=56.92t/s  gen=10.61t/s  gen_tokens=407  rss=2065.4MB  temp=83.4C  backtrack=False(0)
+--- logic_puzzle (logic) ---
+    ttft=0.913s  pp=54.76t/s  gen=10.79t/s  gen_tokens=476  rss=2065.4MB  temp=84.5C  backtrack=False(0)
+--- logic_false_premise (logic) ---
+    ttft=0.61s  pp=47.56t/s  gen=9.28t/s  gen_tokens=1024  rss=2065.4MB  temp=85.1C  backtrack=True(5)
+--- code_algorithm (programming) ---
+    ttft=0.754s  pp=49.06t/s  gen=10.3t/s  gen_tokens=1024  rss=2069.9MB  temp=85.1C  backtrack=True(6)
+--- code_bugfix (programming) ---
+    ttft=0.766s  pp=49.64t/s  gen=9.02t/s  gen_tokens=761  rss=2099.0MB  temp=85.1C  backtrack=True(5)
+--- logic_selfcheck (logic) ---
+    ttft=0.651s  pp=47.64t/s  gen=10.27t/s  gen_tokens=1024  rss=2121.0MB  temp=85.1C  backtrack=True(8)
+[eval] appended 7 rows -> /home/andrew_praks/r1bench/results/reasoning_runs.csv

@@ -1,0 +1,19 @@
+{
+ "prompt": "A shop sells notebooks at 3 for 47 rupees. If I buy 14 notebooks and pay with a 500 rupee note, how much change do I get? Show your reasoning step by step.",
+ "timings": {
+  "cache_n": 0,
+  "prompt_n": 52,
+  "prompt_ms": 857.05,
+  "prompt_per_token_ms": 16.48173076923077,
+  "prompt_per_second": 60.67323960095678,
+  "predicted_n": 421,
+  "predicted_ms": 36950.25,
+  "predicted_per_token_ms": 87.97678571428571,
+  "predicted_per_second": 11.366634867152456
+ },
+ "reasoning_content": "\nFirst, I need to determine the cost of one notebook. The shop sells notebooks at a rate of 3 for 47 rupees. So, the cost of one notebook is 47 rupees divided by 3, which is approximately 15.67 rupees.\n\nNext, I'll calculate the total cost for 14 notebooks. Multiplying the cost per notebook by 14 gives me 14 times 15.67 rupees, which equals 220.38 rupees.\n\nI then subtract the total cost of the notebooks from the amount paid with the 500 rupee note to find the change. So, 500 rupees minus 220.38 rupees equals 279.62 rupees.\n\nTherefore, the change I would receive is 279.62 rupees.\n",
+ "content": "\n\n**Solution:**\n\n1. **Determine the cost of one notebook:**\n   \n   The shop sells notebooks at a rate of 3 for 47 rupees.\n   \n   \\[\n   \\text{Cost per notebook} = \\frac{47 \\text{ rupees}}{3} \\approx 15.67 \\text{ rupees}\n   \\]\n\n2. **Calculate the total cost for 14 notebooks:**\n   \n   \\[\n   \\text{Total cost} = 14 \\times 15.67 \\text{ rupees} = 220.38 \\text{ rupees}\n   \\]\n\n3. **Find the change after paying with a 500 rupee note:**\n   \n   \\[\n   \\text{Change} = 500 \\text{ rupees} - 220.38 \\text{ rupees} = 279.62 \\text{ rupees}\n   \\]\n\n**Final Answer:**\n\n\\[\n\\boxed{279.62 \\text{ rupees}}\n\\]",
+ "wall_s": 37.81033515930176,
+ "peak_rss_mb": 2065.4,
+ "peak_temp_c": 82.3
+}

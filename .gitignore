@@ -1,0 +1,21 @@
+# Model weights — never commit (1.1 GB+); download per README
+*.gguf
+*.bin
+models/
+
+# llama.cpp build tree (clone it separately)
+llama.cpp/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/

@@ -1,0 +1,30 @@
+[thermal] cooling down...
+[thermal] cool baseline (temp 53.2C)
+cool,53.2,81.2,60.98,11.53
+[thermal] heat soak: sustained generation until 84C...
+   soak 1: temp=82.3C
+   soak 2: temp=81.8C
+   soak 3: temp=82.3C
+   soak 4: temp=81.8C
+   soak 5: temp=83.4C
+   soak 6: temp=82.3C
+   soak 7: temp=81.8C
+   soak 8: temp=82.3C
+   soak 9: temp=82.3C
+   soak 10: temp=83.4C
+   soak 11: temp=82.9C
+   soak 12: temp=82.3C
+   soak 13: temp=82.9C
+   soak 14: temp=83.4C
+   soak 15: temp=83.4C
+   soak 16: temp=83.4C
+   soak 17: temp=82.9C
+   soak 18: temp=82.9C
+   soak 19: temp=83.4C
+   soak 20: temp=82.3C
+[thermal] hot measurement (temp 82.9C)
+hot,82.9,82.9,56.15,10.69
+[thermal] done
+phase,temp_before_c,temp_after_c,pp_32tok_tps,tg_256tok_tps
+cool,53.2,81.2,60.98,11.53
+hot,82.9,82.9,56.15,10.69
